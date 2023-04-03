@@ -62,38 +62,37 @@ export function computeLagrangeLiSi(roots, x, xi, curve) {
     return Li;
 }
 
-export function computeLagrangeLiS2(S2, S2p, value, xi, xiw, curve) {
+export function computeLagrangeLiS2(roots, value, xi0, xi1, curve) {
     const Fr = curve.Fr;
 
     const Li = [];
 
-    const num1 = Fr.exp(value, 6);
-    const num2 = Fr.mul(Fr.add(xi, xiw), Fr.exp(value, 3));
-    const num3 = Fr.mul(xi, xiw);
+    const len = roots[0].length;
+    const n = len * roots.length;
+
+    const num1 = Fr.exp(value, n);
+    const num2 = Fr.mul(Fr.add(xi0, xi1), Fr.exp(value, len));
+    const num3 = Fr.mul(xi0, xi1);
     const num = Fr.add(Fr.sub(num1, num2), num3);
 
-    const _3h2 = Fr.mul(Fr.e(3), S2[0]);
-    const xisubxiw = Fr.sub(xi, xiw);
-    const constH2 = Fr.mul(_3h2, xisubxiw);
-    for (let i = 0; i < 3; i++) {
-        const den1 = Fr.mul(constH2, S2[2 * i % 3]);
-        const den2 = Fr.sub(value, S2[i]);
+    let den1 = Fr.mul(Fr.mul(Fr.e(len), roots[0][0]), Fr.sub(xi0, xi1));
+    for (let i = 0; i < len; i++) {
+        const den2 = roots[0][(len - 1) * i % len];
+        const den3 = Fr.sub(value, roots[0][i]);
 
-        const den = Fr.mul(den1, den2);
+        const den = Fr.mul(den1,Fr.mul(den2, den3));
 
         Li[i] = Fr.div(num, den);
     }
 
-    const _3h3 = Fr.mul(Fr.e(3), S2p[0]);
-    const xiwsubxi = Fr.sub(xiw, xi);
-    const constH3 = Fr.mul(_3h3, xiwsubxi);
-    for (let i = 0; i < 3; i++) {
-        const den1 = Fr.mul(constH3, S2p[2 * i % 3]);
-        const den2 = Fr.sub(value, S2p[i]);
+    den1 = Fr.mul(Fr.mul(Fr.e(len), roots[1][0]), Fr.sub(xi1, xi0));
+    for (let i = 0; i < len; i++) {
+        const den2 = roots[1][(len - 1) * i % len];
+        const den3 = Fr.sub(value, roots[1][i]);
 
-        const den = Fr.mul(den1, den2);
+        const den = Fr.mul(den1,Fr.mul(den2, den3));
 
-        Li[i + 3] = Fr.div(num, den);
+        Li[i + len] = Fr.div(num, den);
     }
 
     return Li;

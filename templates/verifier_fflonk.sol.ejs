@@ -347,6 +347,130 @@ contract FflonkVerifier {
                 }
             }
 
+            function computeLiS0(pMem) {
+                let root0 := mload(add(pMem, pH0w8_0))
+                let y := mload(add(pMem, pY))
+                let den1 := 1
+                den1 := mulmod(den1, root0, q)
+                den1 := mulmod(den1, root0, q)
+                den1 := mulmod(den1, root0, q)
+                den1 := mulmod(den1, root0, q)
+                den1 := mulmod(den1, root0, q)
+                den1 := mulmod(den1, root0, q)
+                
+                den1 := mulmod(8, den1, q)
+
+                let den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 0), 8), 32))))
+                let den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(0, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 0)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 1), 8), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(1, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 32)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 2), 8), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(2, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 64)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 3), 8), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(3, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 96)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 4), 8), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(4, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 128)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 5), 8), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(5, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 160)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 6), 8), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(6, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 192)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH0w8_0, mul(mod(mul(7, 7), 8), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH0w8_0, mul(7, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS0Inv, 224)), mulmod(den1, mulmod(den2, den3, q), q))
+            
+            }
+
+            function computeLiS1(pMem) {
+                let root0 := mload(add(pMem, pH1w4_0))
+                let y := mload(add(pMem, pY))
+                let den1 := 1
+                den1 := mulmod(den1, root0, q)
+                den1 := mulmod(den1, root0, q)
+                
+                den1 := mulmod(4, den1, q)
+
+                let den2 := mload(add(pMem, add(pH1w4_0, mul(mod(mul(3, 0), 4), 32))))
+                let den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH1w4_0, mul(0, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS1Inv, 0)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH1w4_0, mul(mod(mul(3, 1), 4), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH1w4_0, mul(1, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS1Inv, 32)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH1w4_0, mul(mod(mul(3, 2), 4), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH1w4_0, mul(2, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS1Inv, 64)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH1w4_0, mul(mod(mul(3, 3), 4), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH1w4_0, mul(3, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS1Inv, 96)), mulmod(den1, mulmod(den2, den3, q), q))            
+            }
+
+            function computeLiS2(pMem) {
+
+                let y := mload(add(pMem, pY))
+
+                let den1 := mulmod(mulmod(3,mload(add(pMem, pH2w3_0)),q), addmod(mload(add(pMem, pXi)) ,mod(sub(q, mulmod(mload(add(pMem, pXi)), w1 ,q)), q), q), q)
+
+                let den2 := mload(add(pMem, add(pH2w3_0, mul(mod(mul(2, 0), 3), 32))))
+                let den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH2w3_0, mul(0, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS2Inv, 0)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH2w3_0, mul(mod(mul(2, 1), 3), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH2w3_0, mul(1, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS2Inv, 32)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH2w3_0, mul(mod(mul(2, 2), 3), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH2w3_0, mul(2, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS2Inv, 64)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den1 := mulmod(mulmod(3,mload(add(pMem, pH3w3_0)),q), addmod(mulmod(mload(add(pMem, pXi)), w1 ,q),mod(sub(q, mload(add(pMem, pXi))), q), q), q)
+
+                den2 := mload(add(pMem, add(pH3w3_0, mul(mod(mul(2, 0), 3), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH3w3_0, mul(0, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS2Inv, 96)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH3w3_0, mul(mod(mul(2, 1), 3), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH3w3_0, mul(1, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS2Inv, 128)), mulmod(den1, mulmod(den2, den3, q), q))
+
+                den2 := mload(add(pMem, add(pH3w3_0, mul(mod(mul(2, 2), 3), 32))))
+                den3 := addmod(y, mod(sub(q, mload(add(pMem, add(pH3w3_0, mul(2, 32))))), q), q)
+
+                mstore(add(pMem, add(pLiS2Inv, 160)), mulmod(den1, mulmod(den2, den3, q), q))
+            }
+
             // Prepare all the denominators that must be inverted, placed them in consecutive memory addresses
             function computeInversions(pMem) {
                 // 1/ZH(xi) used in steps 8 and 9 of the verifier to multiply by 1/Z_H(xi)
@@ -370,21 +494,15 @@ contract FflonkVerifier {
                 w := mulmod(w, addmod(y, mod(sub(q, mload(add(pMem, pH3w3_2))), q), q), q)
                 mstore(add(pMem, pDenH2), w)
 
-                // Denominator needed in the verifier when computing L_i^{S1}(X)
-                <%for ( let i = 0; i < 8; i++) { %>
-                mstore(add(pMem, add(pLiS0Inv, <%= i * 32 %>)), calcLagrangeItem(pMem, <%= i %>, 7, add(pH0w8_0, <%= i * 32 %>), pH0w8_0))
-                <%}%>
+                // Denominator needed in the verifier when computing L_i^{S0}(X)
+                computeLiS0(pMem)
                 
                 // Denominator needed in the verifier when computing L_i^{S1}(X)
-                <%for ( let i = 0; i < 4; i++) {%>
-                mstore(add(pMem, add(pLiS1Inv, <%= i * 32 %>)), calcLagrangeItem(pMem, <%= i %>, 3, add(pH1w4_0, <%= i * 32 %>), pH1w4_0))
-                <%}%>
-                
+                computeLiS1(pMem)
+
                 // Denominator needed in the verifier when computing L_i^{S2}(X)
-                <%for ( let i = 0; i < 6; i++) { %>
-                mstore(add(pMem, add(pLiS2Inv, <%= i * 32 %>)), calcLagrangeItem(pMem, <%= i %>, 5, add(pH2w3_0, <%= i * 32 %>), pH2w3_0))
-                <%}%>
-                
+                computeLiS2(pMem)
+
                 // L_i where i from 1 to num public inputs, needed in step 6 and 7 of the verifier to compute L_1(xi) and PI(xi)
                 w := 1
                 let xi := mload(add(pMem, pXi))
@@ -429,6 +547,19 @@ contract FflonkVerifier {
             // and   y = {C0(h0), C0(h0w8), C0(h0w8^2), C0(h0w8^3), C0(h0w8^4), C0(h0w8^5), C0(h0w8^6), C0(h0w8^7)}
             // and computing C0(xi)
             function computeR0(pMem) {
+                let num := 1
+                let y := mload(add(pMem, pY))
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+
+                num := addmod(num, mod(sub(q, mload(add(pMem, pXi))), q), q)
+
                 let res
                 for { let i := 0 } lt(i, 8) { i := add(i, 1) }
                 {
@@ -450,11 +581,8 @@ contract FflonkVerifier {
                     h0w8i := mulmod(h0w8i, h0w80, q)
                     c0Value := addmod(c0Value, mulmod(calldataload(pEval_s3), h0w8i, q), q)
 
-                    // Compute Lagrange evaluation
-                    let lagrange := calcLagrangeItem(pMem, i, 7, pY, pH0w8_0)
-                    lagrange := mulmod(lagrange, mload(add(pMem, add(pLiS0Inv, mul(i, 32)))), q)
+                    res := addmod(res, mulmod(c0Value, mulmod(num, mload(add(pMem, add(pLiS0Inv, mul(i, 32)))), q), q), q)
 
-                    res := addmod(res, mulmod(c0Value, lagrange, q), q)
                 }
 
                 mstore(add(pMem, pR0), res)
@@ -465,6 +593,15 @@ contract FflonkVerifier {
             // and   y = {C1(h1), C1(h1w4), C1(h1w4^2), C1(h1w4^3)}
             // and computing T0(xi)
             function computeR1(pMem) {
+                let num := 1
+                let y := mload(add(pMem, pY))
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+                num := mulmod(num, y, q)
+
+                num := addmod(num, mod(sub(q, mload(add(pMem, pXi))), q), q)
+
                 let t0
                 let evalA := calldataload(pEval_a)
                 let evalB := calldataload(pEval_b)
@@ -489,10 +626,8 @@ contract FflonkVerifier {
                     c1Value := addmod(c1Value, mulmod(square, evalC, q), q)
                     c1Value := addmod(c1Value, mulmod(mulmod(square, h1w4, q), t0, q), q)
 
-                    let lagrange := calcLagrangeItem(pMem, i, 3, pY, pH1w4_0)
-                    lagrange := mulmod(lagrange, mload(add(pMem, add(pLiS1Inv, mul(i, 32)))), q)
+                    res := addmod(res, mulmod(c1Value, mulmod(num, mload(add(pMem, add(pLiS1Inv, mul(i, 32)))), q), q), q)
 
-                    res := addmod(res, mulmod(c1Value, lagrange, q), q)
                 }
 
                 mstore(add(pMem, pR1), res)
@@ -503,6 +638,27 @@ contract FflonkVerifier {
             // and   y = {[C2(h2), C2(h2w3), C2(h2w3^2)], [C2(h3), C2(h3w3), C2(h3w3^2)]}
             // and computing T1(xi) and T2(xi)
             function computeR2(pMem) {
+                let y := mload(add(pMem, pY))
+                let num := 1
+                num := mulmod(y, num, q)
+                num := mulmod(y, num, q)
+                num := mulmod(y, num, q)
+                num := mulmod(y, num, q)
+                num := mulmod(y, num, q)
+                num := mulmod(y, num, q)
+
+                let num2 := 1
+                num2 := mulmod(y, num2, q)
+                num2 := mulmod(y, num2, q)
+                num2 := mulmod(y, num2, q)
+                num2 := mulmod(num2, addmod(mulmod(mload(add(pMem, pXi)), w1 ,q), mload(add(pMem, pXi)), q), q)
+
+                num := addmod(num, mod(sub(q, num2), q), q)
+
+                num2 := mulmod(mulmod(mload(add(pMem, pXi)), w1 ,q), mload(add(pMem, pXi)), q)
+
+                num := addmod(num, num2, q)
+
                 let t1
                 let t2
                 let betaXi := mulmod(mload(add(pMem, pBeta)), mload(add(pMem, pXi)), q)
@@ -551,10 +707,8 @@ contract FflonkVerifier {
                         c2Value := addmod(c2Value, mulmod(mulmod(hw, hw, q), calldataload(pEval_t2w), q), q)
                     }
 
-                    let lagrange := calcLagrangeItem(pMem, i, 5, pY, pH2w3_0)
-                    lagrange := mulmod(lagrange, mload(add(pMem, add(pLiS2Inv, mul(i, 32)))), q)
+                    gamma := addmod(gamma, mulmod(c2Value, mulmod(num, mload(add(pMem, add(pLiS2Inv, mul(i, 32)))), q), q), q)
 
-                    gamma := addmod(gamma, mulmod(c2Value, lagrange, q), q)
                 }
 
                 mstore(add(pMem, pR2), gamma)
