@@ -38,7 +38,10 @@ import {
     ZKEY_FF_SIGMA1_SECTION,
     ZKEY_FF_SIGMA2_SECTION,
     ZKEY_FF_SIGMA3_SECTION,
+    computeLagrangeLiSi,
+    computeLagrangeLiS2
 } from "./fflonk.js";
+
 import { Keccak256Transcript } from "./Keccak256Transcript.js";
 import { Proof } from "./proof.js";
 import { Polynomial } from "./polynomial/polynomial.js";
@@ -964,6 +967,11 @@ export default async function fflonkProve(zkeyFileName, witnessFileName, logger)
         if (logger) logger.info("> Computing R2 polynomial");
         computeR2();
 
+        // Precompute LiS0, LiS1, LiS2 to add to inv
+        // toInverse["LiS0"] = computeLagrangeLiSi(roots.S0.h0w8, challenges.y, challenges.xi, curve);
+        // toInverse["LiS1"] = computeLagrangeLiSi(roots.S1.h1w4, challenges.y, challenges.xi, curve);
+        // toInverse["LiS2"] = computeLagrangeLiS2(roots.S2.h2w3, roots.S2.h3w3, challenges.y, challenges.xi, challenges.xiw, curve);
+
         if (logger) logger.info("> Computing F polynomial");
         await computeF();
 
@@ -1214,7 +1222,13 @@ export default async function fflonkProve(zkeyFileName, witnessFileName, logger)
 
         let mulAccumulator = Fr.one;
         for (const element of Object.values(toInverse)) {
-            mulAccumulator = Fr.mul(mulAccumulator, element);
+            if(Array.isArray(element)) {
+                for (const subElement of element) {
+                    mulAccumulator = Fr.mul(mulAccumulator, subElement);
+                }
+            } else {
+                mulAccumulator = Fr.mul(mulAccumulator, element);
+            }
         }
         return Fr.inv(mulAccumulator);
 
